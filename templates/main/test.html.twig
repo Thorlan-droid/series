@@ -20,6 +20,9 @@
         {% if loop %}
             <div>index de l'élément courant : {{ loop.index }} / {{ loop.length }}</div>
         {% endif %}
+        {% if loop.first %}
+            <div>Première itération</div>
+        {% endif %}
         {%  if loop.last %}
             <div>Dernière itération</div>
         {% endif %}
