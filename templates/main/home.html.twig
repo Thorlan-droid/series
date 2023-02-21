@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {#  parent() permet de récupérer ce que contient le bloc de la base #}
-{% block title %}
-    {{ parent() }} | Home
-{% endblock %}
+{% block title %} {{ parent() }} | Home {% endblock %}
 
 {% block body %}
     <h1>Welcome to series !</h1>
