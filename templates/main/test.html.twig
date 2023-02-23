@@ -1,37 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<h1>Test !</h1>
 
-    <h1>Test !</h1>
+{# création de variable #}
+{% set name = "Nicolas" %}
+{# ~ est le symbole de concaténation #}
+<h2>Hello {{ name ~ " " ~ name }} !</h2>
+<h2>Hello {{ name }} {{ name }}!</h2>
 
-    {# Creation de variable #}
-    {% set name = "Nicolas" %}
-    {# ~ est le symbole de concaténation  #}
-    <h2>Hello {{ name ~ " " ~ name }}</h2>
-    <h2>Hello {{ name }} {{ name }}</h2>
+{# création d'un tableau #}
+{% set colors = ['red', 'purple', 'green', 'yellow'] %}
 
-    {# création d'un tableau #}
-    {% set colors = ['red', 'purple', 'green', 'yellow'] %}
+{# boucler sur un tableau #}
+{% for color in colors %}
+    <div style="background-color: {{ color }}">{{ color }}</div>
+    {# usage de loop variable créé par for #}
+    {% if loop.first %}
+        <div>Première itération</div>
+    {% endif %}
 
-    {# boucler sur un tableau #}
-    {% for color in colors %}
-        <div style="background-color: {{ color }}">{{ color }}</div>
-        {# usage de loop variable créé par for #}
-        {% if loop %}
-            <div>index de l'élément courant : {{ loop.index }} / {{ loop.length }}</div>
-        {% endif %}
-        {% if loop.first %}
-            <div>Première itération</div>
-        {% endif %}
-        {%  if loop.last %}
-            <div>Dernière itération</div>
-        {% endif %}
-    {#  si tableau est vide alors on passe dans le else #}
-    {% else %}
-        <div>Pas d'éléments</div>
-    {% endfor %}
+    {# index de l'élément #}
+    <div>index de l'élément courant : {{ loop.index }} / {{ loop.length }}</div>
 
-{#  manipulation d'objet #}
+    {% if loop.last %}
+        <div>Dernière itération</div>
+    {% endif %}
+
+{# si tableau est vide alors on passe dans le else #}
+{% else %}
+    <div>Pas d'éléments</div>
+{% endfor %}
+
+{# manipulation d'objet #}
 
 {% set serie =
     {
@@ -41,19 +42,19 @@
     }
 %}
 
-<h2>Titre de la serie : {{ serie.title }}</h2>
+<h2>Titre de la série : {{ serie.title }}</h2>
 
 {# boucler sur un objet #}
-
-{%  for key, val in serie %}
+{% for key, val in serie %}
     <div>{{ key }} : {{ val }}</div>
 {% endfor %}
 
-{# les filtres #}
 
-<div>{{ name | upper | lower | capitalize }} : {{  name | length }} lettres</div>
-<div>{{  colors | join("-") }}</div>
-<div> {{ "now" | date('d-m-Y H:i:s') }}</div>
+{# les filtres #}
+{# le chainage est possible #}
+<div>{{ name | upper | lower | capitalize }} : {{ name | length }} lettres</div>
+<div>{{ colors | join("-")  }}</div>
+<div> {{ "now" | date('Y-m-d') }}</div>
 
 {% endblock %}
 
